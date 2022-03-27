@@ -1,9 +1,7 @@
 import Edit from './L.PM.Edit';
 
-// LayerGroup doesn't inherit from L.PM.Edit because it's just calling L.PM.Edit.Polygon
-// (which inherits from L.PM.Edit) for each layer,
-// so it's not really a parent class
-Edit.LayerGroup = L.Class.extend({
+// LayerGroup inherits from L.PM.Edit because it will have an ability to drag and rotate, all layers together
+Edit.LayerGroup = Edit.extend({
   initialize(layerGroup) {
     this._layerGroup = layerGroup;
     this._layers = this.getLayers();
