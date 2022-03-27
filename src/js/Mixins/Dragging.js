@@ -56,7 +56,7 @@ const DragMixin = {
           this._dragMixinOnMouseDown,
           this
         );
-        this._map.pm._addTouchEvents(container);
+        this._map?.pm._addTouchEvents(container);
       } else {
         // We can't just use layer.on('mousedown') because on touch devices the event is not fired if user presses on the layer and then drag it.
         // With checking on touchstart and mousedown on the DOM element we can listen on the needed events
@@ -104,7 +104,7 @@ const DragMixin = {
           this._dragMixinOnMouseDown,
           this
         );
-        this._map.pm._removeTouchEvents(container);
+        this._map?.pm._removeTouchEvents(container);
       } else {
         // disable mousedown event
         L.DomEvent.off(
