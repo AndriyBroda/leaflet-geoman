@@ -441,7 +441,7 @@ declare module 'leaflet' {
     off(type: 'pm:keyevent', fn?: PM.KeyboardKeyEventHandler): this;
   }
 
-  namespace PM {
+  export namespace PM {
     /** Supported shape names. 'ImageOverlay' is in Edit Mode only. Also accepts custom shape name. */
     type SUPPORTED_SHAPES =
       | 'Marker'
