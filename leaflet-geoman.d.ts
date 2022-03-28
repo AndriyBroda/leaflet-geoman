@@ -1352,22 +1352,24 @@ declare module 'leaflet' {
     /**
      * DRAG MODE LAYER EVENT HANDLERS
      */
-    export type DragStartEventHandler = (e: {
+     interface DragStartEvent  {
       layer: L.Layer;
       shape: PM.SUPPORTED_SHAPES;
-    }) => void;
-    export type DragEventHandler = (e: {
-      layer: L.Layer;
-      containerPoint: any;
-      latlng: L.LatLng;
-      layerPoint: L.Point;
-      originalEvent: any;
-      shape: PM.SUPPORTED_SHAPES;
-    }) => void;
-    export type DragEndEventHandler = (e: {
+    }
+
+    interface DragEvent extends LeafletMouseEvent {
       layer: L.Layer;
       shape: PM.SUPPORTED_SHAPES;
-    }) => void;
+    }
+
+    interface DragEndEvent  {
+      layer: L.Layer;
+      shape: PM.SUPPORTED_SHAPES;
+    }
+
+    export type DragStartEventHandler = (e: DragStartEvent) => void;
+    export type DragEventHandler = (e: DragEvent) => void;
+    export type DragEndEventHandler = (e: DragEndEvent) => void;
 
     /**
      * REMOVE MODE LAYER EVENT HANDLERS
