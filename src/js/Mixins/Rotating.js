@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 import { _convertLatLngs, _toPoint } from '../helpers/ModeHelper';
-import { copyLatLngs } from '../helpers';
+import { closest, copyLatLngs } from '../helpers';
 
 /**
  * We create a temporary polygon with the same latlngs as the layer that we want to rotate.
@@ -34,9 +34,28 @@ const RotateMixin = {
     const origin = this._rotationOriginPoint;
 
     // rotation diff angle (radiant)
-    const angleDiffRadiant =
+    let angleDiffRadiant =
       Math.atan2(position.y - origin.y, position.x - origin.x) -
       Math.atan2(previous.y - origin.y, previous.x - origin.x);
+
+    if (this.options.rotationStepAngle) {
+      if (360 % this.options.rotationStepAngle === 0) {
+        const snapPoints = new Array(360 / this.options.rotationStepAngle)
+          .fill(null)
+          .map((_, index, arr) => index * (360 / arr.length) * (Math.PI / 180));
+
+        angleDiffRadiant =
+          closest(Math.abs(angleDiffRadiant), snapPoints) *
+          (angleDiffRadiant > 0 ? 1 : -1);
+      } else {
+        // eslint-disable-next-line no-console
+        console.error(
+          new Error(
+            `Rotation angle should be divisible without remainder! Angle: ${this.options.rotationStepAngle}`
+          )
+        );
+      }
+    }
 
     // rotate the temp polygon
     this._layer.setLatLngs(

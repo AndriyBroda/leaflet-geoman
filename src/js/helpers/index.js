@@ -273,3 +273,18 @@ export function getRenderer(layer) {
     layer._map._renderer
   );
 }
+
+export function closest(needle, arr) {
+  if (!arr.length) return 0; // TODO: Check different scenarios
+
+  return arr.reduce((a, b) => {
+    const aDiff = Math.abs(a - needle);
+    const bDiff = Math.abs(b - needle);
+
+    if (aDiff === bDiff) {
+      return a > b ? a : b;
+    }
+
+    return bDiff < aDiff ? b : a;
+  });
+}
