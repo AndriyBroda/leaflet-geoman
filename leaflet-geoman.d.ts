@@ -892,6 +892,9 @@ declare module 'leaflet' {
       /** Defines which layers should dragged with this layer together. true syncs all layers in the same LayerGroup(s) or you pass an `Array` of layers to sync. (default:false). */
       syncLayersOnDrag?: L.Layer[] | boolean;
 
+      /** Rotation snap angle **/
+      rotationStepAngle?: number;
+
       /** Edit-Mode for the layer can disabled (`pm.enable()`). (default:true). */
       allowEditing?: boolean;
 
@@ -1356,7 +1359,7 @@ declare module 'leaflet' {
     /**
      * DRAG MODE LAYER EVENT HANDLERS
      */
-     interface DragStartEvent  {
+    interface DragStartEvent extends LeafletMouseEvent {
       layer: L.Layer;
       shape: PM.SUPPORTED_SHAPES;
     }
@@ -1366,7 +1369,7 @@ declare module 'leaflet' {
       shape: PM.SUPPORTED_SHAPES;
     }
 
-    interface DragEndEvent  {
+    interface DragEndEvent extends LeafletMouseEvent {
       layer: L.Layer;
       shape: PM.SUPPORTED_SHAPES;
     }
