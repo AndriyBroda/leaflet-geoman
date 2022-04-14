@@ -7,7 +7,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   watch: false,
-  // devtool: 'cheap-source-map',
+  devtool: 'source-map',
   entry: ['./src/js/L.PM.js'],
   mode: 'production',
   output: {
