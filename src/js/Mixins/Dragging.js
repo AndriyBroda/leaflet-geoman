@@ -264,7 +264,7 @@ const DragMixin = {
     // update the hidden circle border after dragging
     if (
       this._layer instanceof L.CircleMarker &&
-      !this._layer.options?.snapIgnore
+      this._layer.options?.snapIgnore
     ) {
       this._layer.pm._updateHiddenPolyCircle();
     }
@@ -305,7 +305,7 @@ const DragMixin = {
     // update the hidden circle border after dragging
     if (
       this._layer instanceof L.CircleMarker &&
-      !this._layer.options?.snapIgnore
+      this._layer.options?.snapIgnore
     ) {
       this._layer.pm._updateHiddenPolyCircle();
     }
